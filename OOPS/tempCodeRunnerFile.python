@@ -1,0 +1,16 @@
+import torch
+
+print(f"PyTorch Version: {torch.__version__}")
+
+if torch.cuda.is_available():
+    print(f"\n✅ SUCCESS: PyTorch found a GPU!")
+    print(f"Device Name: {torch.cuda.get_device_name(0)}")
+    
+    # Test a simple calculation on the GPU
+    try:
+        x = torch.rand(5, 3).cuda()
+        print(f"\nTest tensor successfully moved to GPU:\n{x}")
+    except Exception as e:
+        print(f"\n❌ GPU found but execution failed: {e}")
+else:
+    print("\n❌ FAILURE: PyTorch is running on CPU only.")
